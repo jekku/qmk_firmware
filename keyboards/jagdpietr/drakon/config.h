@@ -30,6 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 6
 #define MATRIX_COLS 14
 
+#define COMBO_COUNT 8
+
 /*
  * Keyboard Matrix Assignments
  *
