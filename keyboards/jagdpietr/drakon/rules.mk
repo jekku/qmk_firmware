@@ -27,5 +27,4 @@ OLED_DRIVER_ENABLE = yes
 ENCODER_ENABLE = yes
 
 # Ian's custom key requirements
-COMBO_ENABLE = yes
 UNICODE_ENABLE = yes

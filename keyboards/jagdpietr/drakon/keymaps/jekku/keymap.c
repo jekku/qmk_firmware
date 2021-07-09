@@ -22,6 +22,16 @@ _FN,
 _Lyr2
 };
 
+enum ian_favorite_symbols {
+  KC_BENYE,
+  KC_ENYE
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+  [KC_BENYE]  = 0x00D1,
+  [KC_ENYE] = 0x00F1
+};
+
 /*
   Fn + I = Home
   Fn + K = End
@@ -31,48 +41,8 @@ _Lyr2
   Fn + ; = Pg Dwn
   Fn + N = ñ
   Fn + Shift + N = Ñ
- */
+*/
 
-enum combos {
-  FNI_HOME,
-  FNK_END,
-  FNO_PSQ,
-  FNL_DEL,
-  FNP_PGU,
-  FNSEMI_PGD,
-  SMOL_ENYE,
-  BIG_ENYE
-};
-
-enum ian_favorite_symbols {
-  BIG_ENYE_SYMBOL,
-  SMOL_ENYE_SYMBOL
-};
-
-const uint32_t PROGMEM unicode_map[] = {
-  [BIG_ENYE_SYMBOL]  = 0x00D1,
-  [SMOL_ENYE_SYMBOL] = 0x00F1
-};
-
-const uint16_t PROGMEM fni_combo[] = {_FN, KC_I, COMBO_END};
-const uint16_t PROGMEM fnk_combo[] = {_FN, KC_K, COMBO_END};
-const uint16_t PROGMEM fno_combo[] = {_FN, KC_L, COMBO_END};
-const uint16_t PROGMEM fnl_combo[] = {_FN, KC_L, COMBO_END};
-const uint16_t PROGMEM fnp_combo[] = {_FN, KC_P, COMBO_END};
-const uint16_t PROGMEM fnsemi_combo[] = {_FN, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM smolenye_combo[] = {_FN, KC_N, COMBO_END};
-const uint16_t PROGMEM bigenye_combo[] = {_FN, KC_LSFT, KC_N, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-  [FNI_HOME] = COMBO(fni_combo, KC_HOME),
-  [FNK_END] = COMBO(fnk_combo, KC_END),
-  [FNO_PSQ] = COMBO(fnk_combo, KC_PSCR),
-  [FNL_DEL] = COMBO(fnl_combo, KC_DEL),
-  [FNP_PGU] = COMBO(fnp_combo, KC_PGUP),
-  [FNSEMI_PGD] = COMBO(fnp_combo, KC_PGDN),
-  [SMOL_ENYE] = COMBO(smolenye_combo, SMOL_ENYE_SYMBOL),
-  [BIG_ENYE] = COMBO(smolenye_combo, BIG_ENYE_SYMBOL)
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_Base] = LAYOUT_ansi(
@@ -85,17 +55,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FN] = LAYOUT_ansi(
         KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,  KC_TRNS,           KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,                    KC_TRNS,
-        KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_PSCR, KC_PGUP, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_END,  KC_DEL,  KC_PGDN, KC_TRNS,          KC_TRNS,                    KC_TRNS,
+        MO(_Lyr2),        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_ENYE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                              KC_TRNS, KC_TRNS,          KC_HOME, KC_PGDN, KC_END
     ),
 
     [_Lyr2] = LAYOUT_ansi(
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,                    KC_TRNS,
-        KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                              KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,                    KC_TRNS,
+        KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BENYE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                               KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
